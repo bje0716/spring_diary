@@ -63,7 +63,7 @@ SNS 타임라인 형식 일기장
 이름 | 타입 | 설명 | 예시 | 비고
 --- | --- | --- | --- | ---
 `comment_id` | `Long` | 댓글 ID | | `Primary Key`
-`article` | `Article` | 게시글 테이블 | | `Foreign Key (article)`
+`post` | `Post` | 게시글 테이블 | | `Foreign Key (post)`
 `author` | `varchar` | 댓글 작성자 | 페페 | `Foreign Key (member.email)`
 `content` | `varchar` | 댓글 내용 | 똥!ㅋㅋ | 최대 200자 제한
 `comment_img_url` | `varchar` | 댓글 이미지 URL | https://localhost:8080/img/commment/{comment_id}-{author}-{uuid}.png | 이미지 사이즈 32x32 (추후 변경)
