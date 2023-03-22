@@ -1,9 +1,13 @@
+> 기획서를 혼잣말 하는 말투로 작성했습니다.  
+글 읽는데 방해될수 있다고 생각하여 서두에 양해를 구합니다.  
+기획서가 완성하는대로 차차 수정하겠습니다 😅
+
 # 일기장
 
-SNS 타임라인 형식 일기장  
-특징은 나만 쓰고 나만 볼수 있음 댓글도 나만 달수있음  
-한마디로 나 혼자 북치고 장구치는 서비스다.  
-그렇다. 내가 만들어서 나 혼자 쓸려고 기획했다.  
+SNS 타임라인 형식 일기장
+특징은 나만 쓰고 나만 볼수 있음 댓글도 나만 달수있음
+한마디로 나 혼자 북치고 장구치는 서비스다.
+그렇다. 내가 만들어서 나 혼자 쓸려고 기획했다.
 
 ## 요구사항
 차후 업데이트. 당장 생각나는게 없음.
@@ -25,7 +29,7 @@ SNS 타임라인 형식 일기장
 
 ## DB 설계
 
-~~최대한 단순하게 설계했음.~~ 단순한거 맞음? 🤔
+~~최대한 단순하게 설계했음.~~ 단순한거 맞음? 🤔  
 구현은 JPA 사용.
 
 ### 회원 테이블 (Member)
@@ -41,17 +45,17 @@ SNS 타임라인 형식 일기장
 `device_name` | `varchar` | 기기 | Android-{모델명} | 기기 등록해야 쓸수있음. 등록되지 않는 기기는 사용불가능. 최대 5개 등록 가능 (보안 요구 사항)
 `member_exit_yn` | `boolean` | 회원탈퇴 여부 | n (기본값)
 
-### 게시글 테이블 (Article)
+### 게시글 테이블 (Post)
 이름 | 타입 | 설명 | 예시 | 비고
 --- | --- | --- | --- | ---
-`article_id` | `Long` | 글 ID | | `Primary Key`
+`post_id` | `Long` | 글 ID | | `Primary Key`
 `content` | `varchar` | 글 내용 | 똥!ㅋㅋ | 최대 2000 글자 제한
 `author` | `varchar` | 글 작성자 | 페페 | `Foreign Key (member.email)`
 `comment` | `List<Comment>` | 댓글 |
-`article_imgs` | `List<Image>` | 게시글 이미지
-`like_article_yn` | `boolean` | 관심글 체크여부
-`article_update_yn` | `boolean` | 게시글 수정여부 | n (기본값)
-`article_write_date` | `Date` | 게시글 작성날짜 | 2023-03-22 오전 10:00
+`post_imgs` | `List<Image>` | 게시글 이미지
+`like_post_yn` | `boolean` | 관심글 체크여부
+`post_update_yn` | `boolean` | 게시글 수정여부 | n (기본값)
+`post_write_date` | `Date` | 게시글 작성날짜 | 2023-03-22 오전 10:00
 `share_link` | `varchar` | 공유 URL 주소 | {URL}
 `like_count` | `int` | 좋아요 수 | 0 | ~~근데 일기장인데 좋아요 숫자가 필요함?~~ 구현만 해놓고 기능 닫을꺼임
 
@@ -65,3 +69,4 @@ SNS 타임라인 형식 일기장
 `comment_img_url` | `varchar` | 댓글 이미지 URL | https://localhost:8080/img/commment/{comment_id}-{author}-{uuid}.png | 이미지 사이즈 32x32 (추후 변경)
 `comment_write_date` | `Date` | 댓글 작성날짜 | 2023-03-22 오전 10:00
 `comment_update_yn` | `boolean` | 댓글 수정여부 | n (기본값)
+`comment_like_yn` | `boolean` | 댓글 좋아요여부 | n (기본값) | ~~이것도 솔직히 필요없는 기능인듯~~ 개발해놓고 막음
